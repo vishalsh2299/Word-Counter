@@ -9,6 +9,8 @@ import CountWord from "./components/CountWord";
 import FetchWords from "./components/FetchWords";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
+import axios from "axios";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,23 +21,37 @@ class App extends React.Component {
           total: "",
         },
       ],
-      loading: true,
+      loading: false,
+      prevItems: [
+        {
+          name: "",
+          total: "",
+        },
+      ],
     };
   }
 
+  callApi = function () {
+    fetch("/count")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.data) {
+          let items = [...this.state.items];
+          items = res.data;
+          this.setState({ items: items, loading: false });
+          // console.log(this.state);
+        }
+        // console.log(this.state.items, this.state.prevItems);
+      });
+  };
+
   componentDidMount() {
     setInterval(() => {
-      fetch("/count")
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.data) {
-            let items = [...this.state.items];
-            items = res.data;
-            this.setState({ items: items, loading: false });
-            console.log(this.state);
-          }
-          //console.log(this.state.items);
-        });
+      if (this.state.items.length !== this.state.prevItems.length) {
+        this.setState({ loading: true, prevItems: this.state.items });
+      } else {
+        this.callApi();
+      }
     }, 2000);
   }
 

@@ -33,8 +33,6 @@ const FetchWords = (props) => {
   if (props.listItems.length !== 0) {
     words = (
       <div>
-        {/* <p>{state.items.map((x) => x.name)}</p> */}
-        {/* <button onClick={shoot}>Change</button> */}
         <div className="count">
           <div className="word">
             <h3>Word</h3>
@@ -56,7 +54,7 @@ const FetchWords = (props) => {
               </p>
             ))}
           </div>
-        </div>{" "}
+        </div>
       </div>
     );
   } else {

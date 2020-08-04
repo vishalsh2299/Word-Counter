@@ -62,3 +62,21 @@ const CountWord = () => {
 };
 
 export default CountWord;
+
+// onClick={() => {
+//     setState({ loading: true }, () => {
+//       console.log(state);
+//       axios.get("/count").then((result) => {
+//         if (result.data) {
+//           let items = [...state.items];
+//           items = result.data;
+//           setState({ items: items, loading: false });
+//           // console.log(this.state);
+//         }
+//         //   this.setState({
+//         //     loading: false,
+//         //   });
+//       });
+//     });
+//     console.log(state);
+//   }}
