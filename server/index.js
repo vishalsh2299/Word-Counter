@@ -12,16 +12,16 @@ app.use(express.static(buildPath));
 
 var value = 0;
 
-var wordsMap = {};
+var countWords = {};
 var result = [];
 
-function sortByCount(wordsMap) {
+function sortByCount(countWords) {
   // sort by count in descending order
   var finalWordsArray = [];
-  finalWordsArray = Object.keys(wordsMap).map(function (key) {
+  finalWordsArray = Object.keys(countWords).map(function (key) {
     return {
       name: key,
-      total: wordsMap[key],
+      total: countWords[key],
     };
   });
 
@@ -40,19 +40,19 @@ app.get("/count", (req, res) => {
     },
     (error, response, body) => {
       //console.log(body);
-      wordsMap = {};
+      countWords = {};
       if (error) res.send(error);
 
       var wordsArray = body.split(/\s+/);
       wordsArray.forEach((key) => {
-        if (wordsMap.hasOwnProperty(key)) {
-          wordsMap[key]++;
+        if (countWords.hasOwnProperty(key)) {
+          countWords[key]++;
         } else {
-          wordsMap[key] = 1;
+          countWords[key] = 1;
         }
       });
-      wordsMap = sortByCount(wordsMap);
-      result = wordsMap.splice(0, value).map((item) => {
+      countWords = sortByCount(countWords);
+      result = countWords.splice(0, value).map((item) => {
         return item;
       });
 
