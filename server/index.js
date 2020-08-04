@@ -13,6 +13,7 @@ app.use(express.static(buildPath));
 var value = 0;
 
 var wordsMap = {};
+var result = [];
 
 function sortByCount(wordsMap) {
   // sort by count in descending order
@@ -31,14 +32,7 @@ function sortByCount(wordsMap) {
   return finalWordsArray;
 }
 
-app.post("/count", (req, res) => {
-  console.log(req.body);
-  value = parseInt(req.body.name);
-  res.send(req.body);
-});
-
-app.get("/send", (req, res) => {
-  var result;
+app.get("/count", (req, res) => {
   //console.log(value);
   request(
     {
@@ -65,6 +59,12 @@ app.get("/send", (req, res) => {
       res.send({ data: result });
     }
   );
+});
+
+app.post("/count", (req, res) => {
+  console.log(req.body);
+  value = parseInt(req.body.name);
+  res.send(req.body);
 });
 
 const port = process.env.PORT || 5000;

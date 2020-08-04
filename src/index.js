@@ -19,13 +19,13 @@ class App extends React.Component {
           total: "",
         },
       ],
-      loading: false,
+      loading: true,
     };
   }
 
   componentDidMount() {
     setInterval(() => {
-      fetch("/send")
+      fetch("/count")
         .then((res) => res.json())
         .then((res) => {
           if (res.data) {
