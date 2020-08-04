@@ -50,3 +50,11 @@ FetchWords it renders the props data that is sent and shows all the words with t
 CountWord: it gets the input value and pass to the api using axios on submitting.
 
 ## Screenshots 
+
+#Rendering the top N words
+
+![Screenshot (207)](https://user-images.githubusercontent.com/49973377/89319602-f8c39c00-d69d-11ea-897e-08e63cc5d4d2.png)
+
+#Loading Words
+
+![Screenshot (208)](https://user-images.githubusercontent.com/49973377/89320097-a9ca3680-d69e-11ea-9564-11b4ca3f0092.png)
